@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package envoy.api.v2.core;
 
+import "envoy/api/v2/core/address.proto";
 import "envoy/api/v2/core/backoff.proto";
 import "envoy/api/v2/core/http_uri.proto";
 import "envoy/type/percent.proto";
@@ -182,6 +183,12 @@ message Node {
   // See :ref:`the list of features <client_features>` that xDS client may
   // support.
   repeated string client_features = 10;
+
+  // Known listening ports on the node as a generic hint to the management server
+  // for filtering :ref:`listeners <config_listeners>` to be returned. For example,
+  // if there is a listener bound to port 80, the list can optionally contain the
+  // SocketAddress `(0.0.0.0,80)`. The field is optional and just a hint.
+  repeated Address listener_address_restriction_hint;
 }
 
 // Metadata provides additional inputs to filters based on matched listeners,
