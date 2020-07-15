@@ -120,6 +120,9 @@ message CommonTlsContext {
       option (validate.required) = true;
 
       config.core.v3.TypedExtensionConfig typed_config = 2;
+
+      // name of a named config provided in a local bootstrap file
+      string provider_config_name = 3;
     }
   }
 
